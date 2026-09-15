@@ -1,0 +1,4 @@
+variable,id_indicador,area_geografica,fuente_api,frecuencia_objetivo,unidad_objetivo,notas
+poblacion_estimada,,99,BISE,anual,personas,Confirmar si la serie ofrece estimaciones intercensales comparables 2010-2024
+pib_real_estatal,,99,BISE,anual,millones de pesos de 2018,Seleccionar PIBE total a precios constantes año base 2018
+poblacion_ocupada,,99,BISE,trimestral,personas,Preferir ENOE y construir promedio anual documentando ponderadores

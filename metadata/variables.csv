@@ -1,0 +1,14 @@
+variable,nombre_legible,sector,fuente_programa,frecuencia_original,unidad_original,transformacion,cobertura_objetivo,estado
+poblacion,Población estatal,demografico,INEGI o CONAPO,anual,personas,ninguna,2010-2024,pendiente_id
+pib_real,PIB estatal real,mixto,INEGI PIBE,anual,millones de pesos de 2018,ninguna,2010-2024,pendiente_id
+poblacion_ocupada,Población ocupada,privado_y_publico,INEGI ENOE,trimestral,personas,promedio anual,2010-2024,pendiente_id
+pib_real_per_capita,PIB real per cápita,derivado,elaboración propia,anual,pesos por persona,pib_real_por_1e6 dividido entre poblacion,2010-2024,derivado
+productividad_aproximada,PIB real por persona ocupada,derivado,elaboración propia,anual,pesos por persona ocupada,pib_real_por_1e6 dividido entre poblacion_ocupada,2010-2024,derivado
+ingreso_laboral_real,Ingreso laboral real,privado,INEGI pobreza laboral,trimestral,pesos constantes,promedio anual,2010-2024,fase_2
+informalidad_pct,Tasa de informalidad laboral,privado,INEGI ENOE,trimestral,porcentaje,promedio anual,2010-2024,fase_2
+subocupacion_pct,Tasa de subocupación,privado,INEGI ENOE,trimestral,porcentaje,promedio anual,2010-2024,fase_2
+pobreza_laboral_pct,Pobreza laboral,social,INEGI,trimestral,porcentaje,promedio anual y cierre anual,2010-2024,fase_2
+puestos_imss,Puestos registrados en el IMSS,privado_formal,IMSS,mensual,puestos,promedio anual,2010-2024,fase_3
+ied_usd,Inversión extranjera directa,privado,Secretaría de Economía,trimestral,millones de dólares,suma anual,2010-2024,fase_3
+exportaciones_usd,Exportaciones por entidad,privado,INEGI ETEF,trimestral,miles de dólares,suma anual,2010-2024,fase_3
+inversion_publica_real,Inversión pública estatal real,publico,INEGI EFIPEM o Cuenta Pública,anual,pesos constantes,deflactar y dividir entre población,2010-2024,fase_3
