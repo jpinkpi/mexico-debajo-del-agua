@@ -1,0 +1,29 @@
+.env
+# Entornos y credenciales
+.venv/
+venv/
+.env
+*.env
+
+# Datos descargados y procesados
+data/raw/
+data/interim/
+data/processed/
+
+# Configuración local
+config/indicadores.csv
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Resultados
+outputs/
+
+# Sistema y editores
+.vscode/
+.DS_Store
+Thumbs.db
