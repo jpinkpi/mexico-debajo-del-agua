@@ -72,6 +72,37 @@ def procesar_poblacion():
             "El rango de edades no corresponde a 0–109"
         )
 
+    llaves = ["CVE_GEO", "AÑO", "EDAD", "SEXO"]
+
+    if datos[llaves + ["POBLACION"]].isna().any().any():
+        raise ValueError("Hay valores faltantes en los datos originales.")
+
+    if datos.duplicated(llaves).any():
+        raise ValueError("Hay registros duplicados por estado, año, edad y sexo.")
+
+    if set(datos["EDAD"].unique()) != set(range(110)):
+        raise ValueError("Se esperaban edades enteras de 0 a 109.")
+
+    datos["POBLACION"] = pd.to_numeric(
+        datos["POBLACION"], errors="raise"
+    )
+
+    if not datos["POBLACION"].between(
+        0, float("inf"), inclusive="left"
+    ).all():
+        raise ValueError("Hay población negativa o no finita.")
+
+    conteos = datos.groupby(["CVE_GEO", "AÑO"]).size()
+
+    if len(conteos) != 480 or not conteos.eq(220).all():
+        raise ValueError(
+            "Cada entidad-año debe contener 110 edades × 2 sexos."
+        )
+
+
+
+
+
     poblacion = (
         datos.groupby(
             ["CVE_GEO", "ENTIDAD", "AÑO"],

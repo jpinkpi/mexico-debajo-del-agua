@@ -99,7 +99,17 @@ def procesar_pibe():
 
     # La primera sección contiene unidad, concepto,
     # total nacional y las 32 entidades.
-    seccion = raw.iloc[fila_unidad:fila_unidad + 40].copy()
+    limites = raw.index[
+        (raw.index > fila_unidad)
+        & primera_columna.eq(
+            "Variación porcentual anual en valores constantes"
+        )
+    ].tolist()
+
+    if not limites:
+        raise ValueError("No se encontró el final del bloque de niveles.")
+
+    seccion = raw.iloc[fila_unidad:limites[0]].copy()
 
     seccion.iloc[:, 0] = (
         seccion.iloc[:, 0]
@@ -110,10 +120,11 @@ def procesar_pibe():
     estados = seccion[
         seccion.iloc[:, 0].isin(ENTIDADES)
     ].copy()
-    estados = estados.drop_duplicates(
-     subset=[estados.columns[0]],
-     keep="first",
-)
+
+
+    if estados.iloc[:, 0].duplicated().any():
+        raise ValueError("Hay entidades duplicadas en el bloque de niveles.")
+
     if len(estados) != 32:
         encontrados = sorted(estados.iloc[:, 0].unique())
         faltantes = sorted(set(ENTIDADES) - set(encontrados))
