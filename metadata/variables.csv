@@ -1,14 +1,22 @@
 variable,nombre_legible,sector,fuente_programa,frecuencia_original,unidad_original,transformacion,cobertura_objetivo,estado
-poblacion,Población estatal,demografico,INEGI o CONAPO,anual,personas,ninguna,2010-2024,pendiente_id
-pib_real,PIB estatal real,mixto,INEGI PIBE,anual,millones de pesos de 2018,ninguna,2010-2024,pendiente_id
+poblacion,Población estatal,demografico,CONAPO,anual,personas,suma de edades y ambos sexos por entidad-anio,2010-2024,integrada_metadatos_pendientes
+pib_real_millones,PIB estatal real,mixto,INEGI PIBE,anual,millones de pesos de 2018,ninguna,2010-2024,integrada
 poblacion_ocupada,Población ocupada,privado_y_publico,INEGI ENOE,trimestral,personas,promedio anual,2010-2024,pendiente_id
-pib_real_per_capita,PIB real per cápita,derivado,elaboración propia,anual,pesos por persona,pib_real_por_1e6 dividido entre poblacion,2010-2024,derivado
-productividad_aproximada,PIB real por persona ocupada,derivado,elaboración propia,anual,pesos por persona ocupada,pib_real_por_1e6 dividido entre poblacion_ocupada,2010-2024,derivado
+pib_real_per_capita,PIB real per cápita,derivado,elaboración propia,anual,pesos por persona,pib_real_millones * 1000000 / poblacion,2010-2024,integrada
+productividad_aproximada,PIB real por persona ocupada,derivado,elaboración propia,anual,pesos por persona ocupada,pib_real_millones * 1000000 / poblacion_ocupada,2010-2024,pendiente_poblacion_ocupada
 ingreso_laboral_real,Ingreso laboral real,privado,INEGI pobreza laboral,trimestral,pesos constantes,promedio anual,2010-2024,fase_2
 informalidad_pct,Tasa de informalidad laboral,privado,INEGI ENOE,trimestral,porcentaje,promedio anual,2010-2024,fase_2
 subocupacion_pct,Tasa de subocupación,privado,INEGI ENOE,trimestral,porcentaje,promedio anual,2010-2024,fase_2
 pobreza_laboral_pct,Pobreza laboral,social,INEGI,trimestral,porcentaje,promedio anual y cierre anual,2010-2024,fase_2
-puestos_imss,Puestos registrados en el IMSS,privado_formal,IMSS,mensual,puestos,promedio anual,2010-2024,fase_3
+puestos_imss_promedio_anual,Puestos registrados en el IMSS,empleo_registrado_imss,IMSS; compilacion IIEG,mensual,puestos,media aritmetica de 12 registros mensuales,2010-2024,integrada
 ied_usd,Inversión extranjera directa,privado,Secretaría de Economía,trimestral,millones de dólares,suma anual,2010-2024,fase_3
 exportaciones_usd,Exportaciones por entidad,privado,INEGI ETEF,trimestral,miles de dólares,suma anual,2010-2024,fase_3
 inversion_publica_real,Inversión pública estatal real,publico,INEGI EFIPEM o Cuenta Pública,anual,pesos constantes,deflactar y dividir entre población,2010-2024,fase_3
+cve_entidad,Codigo de entidad,identificador,Catalogo estatal,no aplica,texto de dos digitos,normalizacion con cero inicial,2010-2024,integrada
+entidad,Nombre de entidad,identificador,INEGI PIBE,no aplica,texto,nombre del PIBE; union por codigo,2010-2024,integrada
+anio,Anio,temporal,Fuentes originales,anual,anio calendario,seleccion 2010-2024,2010-2024,integrada
+meses_disponibles,Meses usados en promedio IMSS,control,IMSS; compilacion IIEG,mensual,numero de meses,conteo de meses distintos; se requieren 12,2010-2024,integrada
+crecimiento_pib_real_pct,Crecimiento del PIB real,derivado,Elaboracion propia,anual,porcentaje,100 * (pib_real_t / pib_real_t-1 - 1),2011-2024,integrada
+crecimiento_poblacion_pct,Crecimiento de poblacion,derivado,Elaboracion propia,anual,porcentaje,100 * (poblacion_t / poblacion_t-1 - 1),2011-2024,integrada
+crecimiento_pib_pc_pct,Crecimiento del PIB por habitante,derivado,Elaboracion propia,anual,porcentaje,100 * (pib_pc_t / pib_pc_t-1 - 1),2011-2024,integrada
+crecimiento_puestos_imss_pct,Crecimiento de puestos IMSS,derivado,Elaboracion propia,anual,porcentaje,100 * (promedio_imss_t / promedio_imss_t-1 - 1),2011-2024,integrada

@@ -57,3 +57,53 @@ El script genera un CSV largo por indicador en `data/raw/inegi/`. Los identifica
 ## Siguiente entrega analítica
 
 Una gráfica de productividad aproximada contra ingreso laboral real por entidad, acompañada de una tabla de casos atípicos. La productividad se calculará como PIB real dividido entre población ocupada promedio anual, dejando explícito que no equivale a productividad por hora.
+
+## Estado actual del proyecto — 6 de octubre de 2026
+
+Panel construido: 32 entidades, periodo 2010–2024 y 480 observaciones.
+Las tasas de crecimiento cubren 2011–2024.
+
+Archivo principal:
+`data/processed/panel_estatal_v2_2010_2024.csv`
+
+### Variables integradas
+
+- PIB estatal real: millones de pesos a precios de 2018.
+  Fuente: INEGI, PIBE; archivo `pibe_2.xlsx`.
+- Población estatal: suma de hombres y mujeres de las edades
+  incluidas en el archivo de CONAPO `0_Pob_Mitad_1950_2070.xlsx`.
+  La definición y versión de la serie deben documentarse con
+  los metadatos de origen.
+- PIB real por habitante: PIB real convertido a pesos, dividido
+  entre población. No representa ingreso personal ni salario.
+- Puestos IMSS: promedio aritmético de los 12 registros mensuales
+  de cada entidad-año. Fuente original: IMSS; compilación: IIEG.
+  No representa personas únicas ni todo el empleo formal.
+- Tasas de crecimiento anual de PIB, población, PIB por habitante
+  y puestos IMSS.
+
+### Controles incorporados
+
+- Selección del bloque de niveles del PIB, excluyendo variaciones.
+- Rechazo de entidades duplicadas en ese bloque.
+- Validación de registros únicos por entidad, año, edad y sexo.
+- Validación de 110 edades por dos sexos en cada entidad-año.
+- Validación de 12 meses por entidad-año para los puestos IMSS.
+- Integración por código de entidad y año, con correspondencia
+  uno a uno y cobertura de 480 observaciones.
+
+### Orden de procesamiento
+
+Con los tres archivos originales disponibles en sus rutas:
+
+```bash
+python src/process_pibe.py
+python src/process_population.py
+python src/build_state_panel.py
+python src/process_imss.py
+python src/build_state_panel_v2.py
+```
+
+Las carpetas `data/` y `outputs/` estan excluidas de Git.
+Clonar el repositorio no descarga las fuentes ni los resultados.
+La descarga de las fuentes aun debe documentarse.
